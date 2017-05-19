@@ -1,6 +1,4 @@
 <?php
-
-require '../dbconnection.php';
 session_start();
 
 // Login to patient account
