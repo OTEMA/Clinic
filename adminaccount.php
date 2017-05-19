@@ -9,8 +9,9 @@ include("functions/admin.php");
 //CHECKS login button is submitted or not
 if (isset($_POST["btnlogin"])) {
     //patient Login funtion..
-    $password = $con->escape_string($_POST[password]);
-    $loginvalidation = loginfuntion($_POST["loginid"], $password);
+    $password = $con->escape_string($_POST['password']);
+    $loginid = $con->escape_string($_POST['loginid']);
+    $loginvalidation = loginfuntion($loginid, $password);
 }
 ?>
 <!-- ####################################################################################################### -->
@@ -40,7 +41,7 @@ if (isset($_POST["btnlogin"])) {
                     <center>  <img src="images/demo/database-administrator-salary.jpg" alt="" width="250" height="276" /></center></p>
                     <p><font color="#FF0000"><?php echo $loginvalidation; ?></font></p>
                     <p>Login ID :
-                        <input type="text" name="loginid"  id="textfield" class="validate[required,custom[onlyNumberSp]] text-input" value="" size="22" />
+                        <input type="text" name="loginid"  id="loginid" class="validate[required,custom[onlyNumberSp]] text-input" value="" size="22" />
                     </p>
                     <p>      
                         Password : <input type="password" name="password" id="password"  class="validate[required] text-input" value="" size="22" />
