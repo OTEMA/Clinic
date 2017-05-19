@@ -1,7 +1,4 @@
 <?php
-
-require 'dbconnection.php';
-
 session_start();
 
 // Login to admin account
