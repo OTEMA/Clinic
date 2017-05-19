@@ -1,31 +1,38 @@
 <?php
 
+require 'dbconnection.php';
+
 session_start();
 
 // Login to admin account
 function loginfuntion($loginid, $password) {
+    $user = "root";
+    $host = "localhost";
+    $dbpassword = "";
+    $db = "kisumucounty";
+    $con = new mysqli($host, $user, $dbpassword, $db) or die('Unable to connect' . $con->error);
     //LOGIN QUERY
-    $resultlogin = mysqli_query("SELECT * FROM admin WHERE adminid ='$loginid' ");
-
+    $result = mysqli_query($con, "SELECT * FROM admin WHERE adminid ='$loginid'");
+    //$resultlogin = mysqli_query("SELECT * FROM admin WHERE adminid ='$loginid' ");
     //  $resultlogin2 = $con->query("SELECT * FROM admin WHERE adminid ='$loginid' AND password!='$password' ");
 // LOGIN VALIDATON
-    if (mysqli_num_rows($resultlogin) == 1) {
+    if (mysqli_num_rows($result) == 1) {
         //user exists 
         //get user details
-        $user = $resultlogin->fetch_assoc();
+        $user = mysqli_fetch_array($result);
         //check if passwords match
-        if (password_verify($password, $user['Password'])) {
+        if ($password == $user['password']) {
             $_SESSION["adminid"] = $loginid;
             $_SESSION["usertype"] = "ADMIN";
+            $_SESSION["adminname"] = $user['adminname'];
         } else {
-            $is = "Invalid Password entered.";
+            //$is = "Invalid Password entered.";
+            $is = "Wrong Password Entered";
             return $is;
         }
     } else {
-        $in = "Login ID not Exists. ";
+        $in = $loginid;
+        //"Login ID does not Exist. ";
         return $in;
-    }
-    while ($row = mysqli_fetch_array($resultlogin)) {
-        $_SESSION["adminname"] = $row['adminname'];
     }
 }

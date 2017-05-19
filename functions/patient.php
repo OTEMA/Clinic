@@ -5,13 +5,17 @@ session_start();
 
 // Login to patient account
 function loginfuntion($loginid, $password) {
+     $user = "root";
+    $host = "localhost";
+    $dbpassword = "";
+    $db = "kisumucounty";
+    $con = new mysqli($host, $user, $dbpassword, $db) or die('Unable to connect' . $con->error);
     //LOGIN QUERY
     $resultlogin = $con->query("SELECT * FROM patient WHERE patid ='$loginid'");
 
     //$resultlogin2 = $con->query("SELECT * FROM patient WHERE patid ='$loginid' AND password!='$password' ");
 // LOGIN VALIDATON
     if (mysqli_num_rows($resultlogin) == 1) {
-
         //User exist
         //Check user details
         $user = $resultlogin->fetch_assoc();
@@ -28,7 +32,7 @@ function loginfuntion($loginid, $password) {
             return $is;
         }
     } else {
-        $in = "Login ID does not Exists. ";
+        $in = "Login ID does not Exist. ";
         return $in;
     }
 }
