@@ -10,12 +10,8 @@
 <script type="text/javascript" src="scripts/jquery.hoverIntent.js"></script>
 <script type="text/javascript" src="scripts/jquery.hslides.1.0.js"></script>
 <script type="text/javascript" src="scripts/jquery.hslides.setup.js"></script>
- <?php
-error_reporting(E_ERROR | E_PARSE);
-
-    ?>
-</head>
-<body id="top">
+ </head>
+<body>
 <div id="header">
   <div class="wrapper">
     <div class="fl_left">
